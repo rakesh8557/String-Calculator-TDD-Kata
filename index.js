@@ -1,7 +1,7 @@
 function add(number) {
     if(!number)
         return 0;
-    const numList = number.split(',');
+    const numList = number.split(/[\n,]/);
     let total = 0;
 
     for (let num of numList) {
@@ -11,5 +11,5 @@ function add(number) {
     return total;
 }
 
-const res = add("1,2,3,4");
+const res = add("1,2\n3,4\n5,6,7\n8");
 console.log(res);
