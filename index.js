@@ -1,7 +1,15 @@
 function add(number) {
     if(!number)
         return 0;
-    const numList = number.split(/[\n,]/);
+
+    let delimiter = ',';
+    if (number.startsWith('//')) {
+        const parts = number.split('\n');
+        delimiter = parts[0].substring(2);
+        number = parts.slice(1).join('\n');
+    }
+
+    const numList = number.split(new RegExp(`[${delimiter}\\n]`));
     let total = 0;
 
     for (let num of numList) {
@@ -11,5 +19,6 @@ function add(number) {
     return total;
 }
 
-const res = add("1,2\n3,4\n5,6,7\n8");
+// const res = add("1,2\n3,4\n5,6,7\n8");
+const res = add("//*\n1*2*3*4");
 console.log(res);
